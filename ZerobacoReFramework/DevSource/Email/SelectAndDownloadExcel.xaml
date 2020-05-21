@@ -1,0 +1,400 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="CloseAllApplications" this:CloseAllApplications.in_basePath="C:\Uipath\Handok_5.Sampling_StockRequest\Data" this:CloseAllApplications.in_processName="5.Sampling_StockRequest" this:CloseAllApplications.in_inputFileName="Handok_5.Sampling_StockRequest_BaseInfo.xlsx" this:CloseAllApplications.in_robot_Email_Id="RPADEV1.KR@handok.com" this:CloseAllApplications.in_iobasePath="\\HDPSRPA01\RPA_WorkFile" this:CloseAllApplications.in_robot_Id="Robot1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_toEmailId" Type="InArgument(x:String)" />
+    <x:Property Name="in_toEmailIdCC" Type="InArgument(x:String)" />
+    <x:Property Name="out_jobListDataTable" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="in_basePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_subject" Type="InArgument(x:String)" />
+    <x:Property Name="in_body" Type="InArgument(x:String)" />
+    <x:Property Name="in_processName" Type="InArgument(x:String)" />
+    <x:Property Name="in_TimeoutLong" Type="InArgument(x:String)" />
+    <x:Property Name="in_inputFileName" Type="InArgument(x:String)" />
+    <x:Property Name="in_robot_Email_Id" Type="InArgument(x:String)" />
+    <x:Property Name="in_iobasePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_robot_Id" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>848.8,3420.8</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>CloseAllApplications_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+      <AssemblyReference>UiPath.Cryptography</AssemblyReference>
+      <AssemblyReference>UiPath.Java.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>UiPath.PDF</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence sap2010:Annotation.AnnotationText="Filesystem : Select and Download Excel &#xA;&#xA;Pre Condition: &#xA;Post Condtion: downloaded excel file" DisplayName="filesystem: Select and Download Excel Processes" sap:VirtualizedContainerService.HintSize="828.8,3360.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="outputData" />
+      <Variable x:TypeArguments="sd:DataTable" Name="jobListDataTable" />
+      <Variable x:TypeArguments="x:String" Name="filePath" />
+      <Variable x:TypeArguments="x:String" Name="fromFileName" />
+      <Variable x:TypeArguments="x:String" Name="toFileName" />
+      <Variable x:TypeArguments="x:String" Name="excelPath" />
+      <Variable x:TypeArguments="sd:DataTable" Name="mailIdDT" />
+      <Variable x:TypeArguments="x:String" Name="authoDate" />
+      <Variable x:TypeArguments="x:String" Name="partnerName" />
+      <Variable x:TypeArguments="x:String" Name="controlNo" />
+      <Variable x:TypeArguments="sd:DataTable" Name="workListDT" />
+      <Variable x:TypeArguments="x:Int32" Name="indexRow" />
+      <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="MailMessage" />
+      <Variable x:TypeArguments="sd:DataTable" Name="workListDT2" />
+      <Variable x:TypeArguments="x:String" Name="createTime" />
+      <Variable x:TypeArguments="x:String" Name="makeHHmm" />
+      <Variable x:TypeArguments="x:String" Default="00" Name="hh" />
+      <Variable x:TypeArguments="x:String" Default="01" Name="mm" />
+      <Variable x:TypeArguments="sd:DataRow[]" Name="tempDataRow" />
+      <Variable x:TypeArguments="x:String" Name="mailCheckSubject" />
+      <Variable x:TypeArguments="x:String" Name="getText" />
+      <Variable x:TypeArguments="sd:DataTable" Name="testResultDT" />
+      <Variable x:TypeArguments="x:String" Name="FileName" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="787.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Select and Download Excel  processes...&quot;]" />
+    <Sequence DisplayName="기준정보(BaseInfo) 엑셀 파일 유무 체크 및 복사" sap:VirtualizedContainerService.HintSize="787.2,68.8" sap2010:WorkflowViewState.IdRef="Sequence_92">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign sap:VirtualizedContainerService.HintSize="519.2,60" sap2010:WorkflowViewState.IdRef="Assign_34">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[filePath]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_iobasePath + "\"+ in_robot_Id + "\"+ in_processName + "\Input\" + in_inputFileName]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <WriteLine DisplayName="Write line" sap:VirtualizedContainerService.HintSize="519.2,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_12" Text="[&quot;filePath:&quot; + filePath]" />
+      <If Condition="[File.Exists(filePath)=true]" DisplayName="파일일 없으면 에러" sap:VirtualizedContainerService.HintSize="519.2,492.8" sap2010:WorkflowViewState.IdRef="If_13">
+        <If.Else>
+          <Sequence DisplayName="send mail for no excel error" sap:VirtualizedContainerService.HintSize="375.2,343.2" sap2010:WorkflowViewState.IdRef="Sequence_90">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="Body2" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_35">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Body2]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[Environment.NewLine +Environment.NewLine + " [" + in_processName + "] 파트너사 메일주소 엑셀파일이 없습니다. no BaseInfo excel file. Error occurred!!  "]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke SendExceptionEmail workflow" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Framework\SendEmail.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Subject]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Body">[in_Body]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_toEmailIdCC">[in_toEmailIdCC]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_toEmailId">[in_toEmailId]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Body2">[Body2]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_robot_Email_Id">[in_robot_Email_Id]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <Throw DisplayName="Throw incorrect Base Info" Exception="[new Exception(&quot;no input error!&quot;)]" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="Throw_6" />
+          </Sequence>
+        </If.Else>
+      </If>
+      <Sequence DisplayName="마스타 엑셀 파일 복사" sap:VirtualizedContainerService.HintSize="519.2,68.8" sap2010:WorkflowViewState.IdRef="Sequence_91">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Assign DisplayName="엑셀(공용폴더)" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_36">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[fromFileName]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_iobasePath + "\"+ in_robot_Id + "\"+ in_processName + "\Input\" + in_inputFileName]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign DisplayName="로봇 Input 파일 " sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_37">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[toFileName]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String" xml:space="preserve">[in_basePath +  "\Input\" + in_inputFileName]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="333.6,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_17" Text="[toFileName]" />
+        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="file copy 처리" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="DevSource\common\fileCopyProcess.xaml">
+          <ui:InvokeWorkflowFile.Arguments>
+            <InArgument x:TypeArguments="x:String" x:Key="in_fromFileName">[fromFileName]</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="in_toFileName">[toFileName]</InArgument>
+          </ui:InvokeWorkflowFile.Arguments>
+        </ui:InvokeWorkflowFile>
+      </Sequence>
+    </Sequence>
+    <Sequence DisplayName="공용폴더에서 입력파일 이동" sap:VirtualizedContainerService.HintSize="787.2,2282.4" sap2010:WorkflowViewState.IdRef="Sequence_147">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="fromfolderPath" />
+        <Variable x:TypeArguments="s:String[]" Name="FileNames" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="공용폴더 파일 파악" sap:VirtualizedContainerService.HintSize="745.6,60" sap2010:WorkflowViewState.IdRef="Assign_92">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[fromfolderPath]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_iobasePath + "\"+ in_robot_Id + "\"+ in_processName + "\Input\"]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="745.6,60" sap2010:WorkflowViewState.IdRef="Assign_93">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">[FileNames]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">[directory.GetFiles(fromfolderPath)]</InArgument>
+        </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Assign>
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="745.6,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_13" Text="[fromfolderPath]" />
+      <If Condition="[FileNames.Count &gt; 1]" DisplayName="입력파일 갯수 체크" sap:VirtualizedContainerService.HintSize="745.6,492.8" sap2010:WorkflowViewState.IdRef="If_14">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Else>
+          <Sequence DisplayName="send mail for no excel error" sap:VirtualizedContainerService.HintSize="375.2,343.2" sap2010:WorkflowViewState.IdRef="Sequence_143">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="Body2" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_94">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Body2]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[Environment.NewLine +Environment.NewLine + " [" + in_processName + "] RPA작업요청파일이 없으니 확인하여 주세요. Input file Error occurred!!  "]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke SendExceptionEmail workflow" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Framework\SendEmail.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Subject">[in_Subject]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Body">[in_Body]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_toEmailIdCC">[in_toEmailIdCC]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_toEmailId">[in_toEmailId]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Body2">[Body2]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_robot_Email_Id">[in_robot_Email_Id]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <Throw DisplayName="Throw incorrect Base Info" Exception="[new Exception(&quot;no input error!&quot;)]" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="Throw_7" />
+          </Sequence>
+        </If.Else>
+      </If>
+      <ui:BuildDataTable DataTable="[jobListDataTable]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="745.6,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Column1&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="작업영역으로 복사 및 input name DataTable 생성" sap:VirtualizedContainerService.HintSize="745.6,1254.4" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[FileNames]">
+        <ui:ForEach.Body>
+          <ActivityAction x:TypeArguments="x:String">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:String" Name="files" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="710.4,1120" sap2010:WorkflowViewState.IdRef="Sequence_146">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="668.8,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_14">
+                <ui:CommentOut.Body>
+                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="272,155.2" sap2010:WorkflowViewState.IdRef="Sequence_149">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="230.4,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_15" Text="[files]" />
+                  </Sequence>
+                </ui:CommentOut.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:CommentOut>
+              <If Condition="[files.Contains(&quot;BaseInfo&quot;)]" sap:VirtualizedContainerService.HintSize="668.8,934.4" sap2010:WorkflowViewState.IdRef="If_16">
+                <If.Else>
+                  <Sequence DisplayName="작업요청파일 이동처리" sap:VirtualizedContainerService.HintSize="524.8,784.8" sap2010:WorkflowViewState.IdRef="Sequence_145">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_95">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[FileName]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[files.Substring(files.LastIndexOf("\"))]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_96">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[toFileName]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[in_basePath + "\Input"+FileName]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="483.2,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_16" Text="[toFileName]" />
+                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{(FileName.Replace(&quot;\&quot;,&quot;&quot;))}]" DataTable="[jobListDataTable]" DisplayName="Add Data Row (jobListDataTable)" sap:VirtualizedContainerService.HintSize="483.2,22.4" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                    <If Condition="[File.Exists(toFileName)=true]" DisplayName="파일이 있으면 지우고 copy" sap:VirtualizedContainerService.HintSize="483.2,264.8" sap2010:WorkflowViewState.IdRef="If_15">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="241.6,115.2" sap2010:WorkflowViewState.IdRef="Sequence_144">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[toFileName]" />
+                        </Sequence>
+                      </If.Then>
+                    </If>
+                    <ui:MoveFile ContinueOnError="{x:Null}" Destination="[toFileName]" DisplayName="Move File (작업요청파일)" sap:VirtualizedContainerService.HintSize="483.2,22.4" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="False" Path="[files]" />
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEach.Body>
+      </ui:ForEach>
+    </Sequence>
+    <Sequence DisplayName="작업요청폴더(input)에서 작업요청엑셀파일 가져오기" sap:VirtualizedContainerService.HintSize="787.2,495.2" sap2010:WorkflowViewState.IdRef="Sequence_7">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="ResultCount" DataTable="[jobListDataTable]" DisplayName="작업대상건수 칼럼 추가" sap:VirtualizedContainerService.HintSize="263.2,22.4" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_7" MaxLength="100" Unique="False" />
+      <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="outputFileName" DataTable="[jobListDataTable]" DisplayName="출력파일명 칼럼 추가" sap:VirtualizedContainerService.HintSize="263.2,22.4" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_8" MaxLength="100" Unique="False" />
+      <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="ProcessingCount" DataTable="[jobListDataTable]" DisplayName="처리건수 칼럼 추가" sap:VirtualizedContainerService.HintSize="263.2,22.4" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_9" MaxLength="100" Unique="False" />
+      <ui:AddDataColumn x:TypeArguments="x:Object" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="SuccessCount" DataTable="[jobListDataTable]" DisplayName="정상처리건수 칼럼 추가" sap:VirtualizedContainerService.HintSize="263.2,22.4" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_10" MaxLength="100" Unique="False" />
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="263.2,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_15">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="272,320" sap2010:WorkflowViewState.IdRef="Sequence_150">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:OutputDataTable DataTable="[jobListDataTable]" DisplayName="Output data table" sap:VirtualizedContainerService.HintSize="230.4,22.4" sap2010:WorkflowViewState.IdRef="OutputDataTable_2" Text="[outputData]" />
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="230.4,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="[outputData]" />
+            <WriteLine DisplayName="Write line" sap:VirtualizedContainerService.HintSize="230.4,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_7" Text="[jobListDataTable.Rows(0).Item(0).ToString]" />
+          </Sequence>
+        </ui:CommentOut.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:CommentOut>
+      <Assign sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_23">
+        <Assign.To>
+          <OutArgument x:TypeArguments="sd:DataTable">[out_jobListDataTable]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="sd:DataTable">[jobListDataTable]</InArgument>
+        </Assign.Value>
+      </Assign>
+    </Sequence>
+    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="787.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;end!! Select and Download Excel  processes...&quot;]" />
+  </Sequence>
+</Activity>

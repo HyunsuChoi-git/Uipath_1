@@ -1,0 +1,422 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SqlServerInsert" this:SqlServerInsert.in_basePath="C:\Uipath\Handok_1.PVData_Creation\Data" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_jobListDataTable" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_basePath" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>733,2834</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="SqlServerInsert" sap:VirtualizedContainerService.HintSize="693,2754" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:DatabaseConnection" Name="dbConnection" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="insertQuery" />
+      <Variable x:TypeArguments="sd:DataTable" Name="resultDataTable" />
+      <Variable x:TypeArguments="x:Int32" Name="indexRow" />
+      <Variable x:TypeArguments="x:String" Name="SqlQuery" />
+      <Variable x:TypeArguments="x:String" Name="controlNo" />
+      <Variable x:TypeArguments="x:String" Name="outputData" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="671,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;start SqlServerInsert  processes...&quot;]" />
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="671,51" sap2010:WorkflowViewState.IdRef="CommentOut_8">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="358,307" sap2010:WorkflowViewState.IdRef="Sequence_16">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="테스트 용" sap:VirtualizedContainerService.HintSize="336,183" sap2010:WorkflowViewState.IdRef="Sequence_10">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:BuildDataTable DataTable="[in_jobListDataTable]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="314,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;column1&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;ResultCount&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;outputFileName&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;ProcessingCount&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;SuccessCount&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;outputFileName2&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;column1&gt;Handok_1.PVData_Creation_20190807_RPARequest.xlsx&lt;/column1&gt;&#xA;    &lt;ResultCount&gt;111&lt;/ResultCount&gt;&#xA;    &lt;outputFileName&gt;Handok_1.PVData_Creation_20190807_RPAComplete(20190812 201559).xlsx&lt;/outputFileName&gt;&#xA;    &lt;ProcessingCount&gt;100&lt;/ProcessingCount&gt;&#xA;    &lt;SuccessCount&gt;99&lt;/SuccessCount&gt;&#xA;    &lt;outputFileName2&gt;Handok_1.PVData_Creation_20190807_ExtractData(20190812 201559).xlsx&lt;/outputFileName2&gt;&#xA;  &lt;/TableName&gt;&#xA;&lt;/NewDataSet&gt;" />
+          </Sequence>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:DatabaseConnect sap2010:Annotation.AnnotationText="sDBName,sDb_User,sDb_password변수를 지정하세요." DatabaseConnection="[dbConnection]" DisplayName="DB접속" sap:VirtualizedContainerService.HintSize="671,101" sap2010:WorkflowViewState.IdRef="DatabaseConnect_2" ProviderName="System.Data.SqlClient" ConnectionString="Data Source=HDPSIDB01;Initial Catalog=UIPATH;Persist Security Info=True;User ID=UIPATH_RPA;Password=pw4$UIPATH">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:DatabaseConnect>
+    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[in_jobListDataTable]" DisplayName="For each row" sap:VirtualizedContainerService.HintSize="671,2114" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="641,1966" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="현재 row 위치" sap:VirtualizedContainerService.HintSize="619,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[indexRow]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[in_jobListDataTable.Rows.IndexOf(row)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Sequence DisplayName="RPA작업결과" sap:VirtualizedContainerService.HintSize="619,1742" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="ui:WorkbookApplication" Name="vWb" />
+                <Variable x:TypeArguments="sd:DataTable" Name="vDt" />
+                <Variable x:TypeArguments="x:String" Name="vsOutputFileName" />
+                <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="vDict" />
+                <Variable x:TypeArguments="ui:GenericValue" Name="excelPath" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="597,51" sap2010:WorkflowViewState.IdRef="CommentOut_9">
+                <ui:CommentOut.Body>
+                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="233,185" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="211,61" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[in_basePath + &quot;\Output\&quot;+in_jobListDataTable.Rows(indexRow).Item(&quot;outputFileName&quot;).ToString]" />
+                  </Sequence>
+                </ui:CommentOut.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:CommentOut>
+              <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope (RPA작업결과 )" sap:VirtualizedContainerService.HintSize="597,1527" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" Visible="False" Workbook="[vWb]" WorkbookPath="[in_basePath + &quot;\Output\&quot;+in_jobListDataTable.Rows(indexRow).Item(&quot;outputFileName&quot;).ToString]">
+                <ui:ExcelApplicationScope.Body>
+                  <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="583,1418" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="ui:GenericValue" Name="a" />
+                        <Variable x:TypeArguments="x:Int32" Name="viRowIndex" />
+                        <Variable x:TypeArguments="sd:DataTable" Name="rpaResultDT" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:ExcelReadRange AddHeaders="True" DataTable="[rpaResultDT]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="561,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="Sheet1">
+                        <ui:ExcelReadRange.Range>
+                          <InArgument x:TypeArguments="x:String">
+                            <Literal x:TypeArguments="x:String" Value="" />
+                          </InArgument>
+                        </ui:ExcelReadRange.Range>
+                      </ui:ExcelReadRange>
+                      <ui:ForEachRow CurrentIndex="[viRowIndex]" DataTable="[rpaResultDT]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="561,1195" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                        <ui:ForEachRow.Body>
+                          <ActivityAction x:TypeArguments="sd:DataRow">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="531,1048" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign sap:VirtualizedContainerService.HintSize="509,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[SqlQuery]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">["SELECT [보고서관리번호] FROM [dbo].[PV_log] WHERE [보고서관리번호] = '"+row("보고서관리번호").ToString+"'"]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="509,51" sap2010:WorkflowViewState.IdRef="CommentOut_10">
+                                <ui:CommentOut.Body>
+                                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="233,286" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="211,61" sap2010:WorkflowViewState.IdRef="WriteLine_7" Text="[row(&quot;보고서관리번호&quot;).ToString]" />
+                                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="211,61" sap2010:WorkflowViewState.IdRef="WriteLine_9" Text="[SqlQuery]" />
+                                  </Sequence>
+                                </ui:CommentOut.Body>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:CommentOut>
+                              <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="쿼리의 where조건등에 변수를 사용할 경우, 해당변수는 미리 선언하세요" CommandType="Text" DataTable="[resultDataTable]" DisplayName="SQL실행" ExistingDbConnection="[dbConnection]" sap:VirtualizedContainerService.HintSize="509,130" sap2010:WorkflowViewState.IdRef="ExecuteQuery_3" Sql="[SqlQuery]">
+                                <ui:ExecuteQuery.Parameters>
+                                  <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                </ui:ExecuteQuery.Parameters>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:ExecuteQuery>
+                              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="509,51" sap2010:WorkflowViewState.IdRef="CommentOut_11">
+                                <ui:CommentOut.Body>
+                                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="233,348" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:OutputDataTable DataTable="[resultDataTable]" DisplayName="Output data table" sap:VirtualizedContainerService.HintSize="211,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_2" Text="[outputData]" />
+                                    <WriteLine DisplayName="Write line" sap:VirtualizedContainerService.HintSize="211,61" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[outputData]" />
+                                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="211,61" sap2010:WorkflowViewState.IdRef="WriteLine_8" Text="[resultDataTable.Rows.Count.ToString]" />
+                                  </Sequence>
+                                </ui:CommentOut.Body>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:CommentOut>
+                              <If Condition="[resultDataTable.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="509,211" sap2010:WorkflowViewState.IdRef="If_1">
+                                <If.Then>
+                                  <Assign DisplayName="Update Query 편집" sap:VirtualizedContainerService.HintSize="242,64" sap2010:WorkflowViewState.IdRef="Assign_4">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[SqlQuery]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String" xml:space="preserve">["UPDATE [dbo].[PV_log] " _
+ &amp; "   SET [보고서관리번호] = '"+row("보고서관리번호").ToString+ "' "  _
+ &amp; "      ,[파트너사] = '"+row("파트너사").ToString+ "' " _
+ &amp; "      ,[입수일] = '"+row("입수일").ToString+ "' " _
+ &amp; "      ,[보고서생성시각] = '"+row("보고서생성시각").ToString+ "' " _
+ &amp; "      ,[미보고사유] = '"+row("미보고사유").ToString+ "' " _
+ &amp; "      ,[첨부파일명] = '"+row("첨부파일명").ToString+ "' " _
+ &amp; "      ,[보낸사람] = '"+row("보낸사람").ToString+ "' " _
+ &amp; "      ,[메일제목] = '"+row("메일제목").ToString+ "' " _
+ &amp; "      ,[받은일시] = '"+row("받은일시").ToString+ "' " _
+ &amp; "      ,[복수여부] = '"+row("복수여부").ToString+ "' " _
+ &amp; "      ,[참조PDF] = '"+row("참조PDF").ToString+ "' " _
+ &amp; "      ,[RPA작업결과] = N'"+row("RPA작업결과").ToString+ "' " _
+ &amp; "      ,[edms업로드결과] = N'"+row("edms업로드결과").ToString+ "' " _
+ &amp; "      ,[메일이동결과] = N'"+row("메일이동결과").ToString+ "' " _
+ &amp; "      ,[최종이동폴더] = N'"+row("최종이동폴더").ToString+ "' " _
+ &amp; "      ,[작업일시] = '"+now.ToString+ "'  " _
+ &amp; " WHERE [보고서관리번호] = '"+row("보고서관리번호").ToString+"'"]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </If.Then>
+                                <If.Else>
+                                  <Assign DisplayName="Insert Query 편집" sap:VirtualizedContainerService.HintSize="242,64" sap2010:WorkflowViewState.IdRef="Assign_5">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[SqlQuery]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String" xml:space="preserve">["INSERT INTO [dbo].[PV_log] " _
+ &amp; "          ([보고서관리번호]" _
+ &amp; "            ,[파트너사]"       _
+ &amp; "           ,[입수일]"       _
+ &amp; "           ,[보고서생성시각]"       _
+ &amp; "           ,[미보고사유]"       _
+ &amp; "           ,[첨부파일명]"       _
+ &amp; "           ,[보낸사람]"       _
+ &amp; "           ,[메일제목]"       _
+ &amp; "           ,[받은일시] "       _
+ &amp; "           ,[복수여부] "       _
+ &amp; "           ,[참조PDF] "       _
+ &amp; "           ,[RPA작업결과]"       _
+ &amp; "           ,[edms업로드결과]"       _
+ &amp; "           ,[메일이동결과]"       _
+ &amp; "           ,[최종이동폴더]"       _
+ &amp; "           ,[작업일시]"       _
+ &amp; "           ,[생성일])"       _
+ &amp; "      VALUES"                 _
+ &amp; "        ('"+row("보고서관리번호").ToString+ "',  '" _
+ &amp;             row("파트너사").ToString+"',  '" _
+ &amp;             row("입수일").ToString+ "',  '" _
+ &amp;             row("보고서생성시각").ToString+ "',  '" _
+ &amp;             row("미보고사유").ToString+ "',  '" _
+ &amp;             row("첨부파일명").ToString+ "',  '" _
+ &amp;             row("보낸사람").ToString+ "',  '" _
+ &amp;             row("메일제목").ToString+ "',  '" _
+ &amp;             row("받은일시").ToString+ "',  '" _
+ &amp;             row("복수여부").ToString+ "',  '" _
+ &amp;            row("참조PDF").ToString+ "',  N'" _
+ &amp;            row("RPA작업결과").ToString+ "',  N'" _
+ &amp;            row("edms업로드결과").ToString+ "',  N'" _
+ &amp;            row("메일이동결과").ToString+ "',  N'" _
+ &amp;            row("최종이동폴더").ToString+ "',  '" _
+ &amp;            now.ToString+ "',  '" _
+ &amp;            now.ToString+"')"]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </If.Else>
+                              </If>
+                              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="509,51" sap2010:WorkflowViewState.IdRef="CommentOut_12">
+                                <ui:CommentOut.Body>
+                                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="233,185" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="211,61" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="[SqlQuery]" />
+                                  </Sequence>
+                                </ui:CommentOut.Body>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:CommentOut>
+                              <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="쿼리의 where조건등에 변수를 사용할 경우, 해당변수는 미리 선언하세요" CommandType="Text" DataTable="[resultDataTable]" DisplayName="SQL실행" ExistingDbConnection="[dbConnection]" sap:VirtualizedContainerService.HintSize="509,130" sap2010:WorkflowViewState.IdRef="ExecuteQuery_4" Sql="[SqlQuery]">
+                                <ui:ExecuteQuery.Parameters>
+                                  <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                </ui:ExecuteQuery.Parameters>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:ExecuteQuery>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEachRow.Body>
+                      </ui:ForEachRow>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:ExcelApplicationScope.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:ExcelApplicationScope>
+            </Sequence>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEachRow>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="671,51" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="358,541" sap2010:WorkflowViewState.IdRef="Sequence_14">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence sap:VirtualizedContainerService.HintSize="336,417" sap2010:WorkflowViewState.IdRef="Sequence_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="쿼리의 where조건등에 변수를 사용할 경우, 해당변수는 미리 선언하세요" CommandType="Text" DataTable="[resultDataTable]" DisplayName="SQL실행" ExistingDbConnection="[dbConnection]" sap:VirtualizedContainerService.HintSize="314,130" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="select * from PV_log">
+              <ui:ExecuteQuery.Parameters>
+                <scg:Dictionary x:TypeArguments="x:String, Argument" />
+              </ui:ExecuteQuery.Parameters>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ExecuteQuery>
+            <ui:OutputDataTable DataTable="[resultDataTable]" DisplayName="Output data table" sap:VirtualizedContainerService.HintSize="314,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[outputData]" />
+            <WriteLine DisplayName="Write line" sap:VirtualizedContainerService.HintSize="314,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[outputData]" />
+          </Sequence>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:DatabaseDisconnect DatabaseConnection="[dbConnection]" DisplayName="DB절단" sap:VirtualizedContainerService.HintSize="671,22" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_1" />
+  </Sequence>
+</Activity>

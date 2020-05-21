@@ -1,0 +1,621 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="GetSamplingStockInfo" this:GetSamplingStockInfo.in_productCode="343038" this:GetSamplingStockInfo.in_batchNo="T2FX013" this:GetSamplingStockInfo.in_quantity="20" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_productCode" Type="InArgument(x:String)" />
+    <x:Property Name="in_batchNo" Type="InArgument(x:String)" />
+    <x:Property Name="in_quantity" Type="InArgument(x:String)" />
+    <x:Property Name="out_SuccessYN" Type="OutArgument(x:String)" />
+    <x:Property Name="out_errorMessage" Type="OutArgument(x:String)" />
+    <x:Property Name="out_stockAble" Type="OutArgument(x:String)" />
+    <x:Property Name="out_stockRestrict" Type="OutArgument(x:String)" />
+    <x:Property Name="out_stockDefer" Type="OutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1220,7916</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="GetSamplingStockInfo" sap:VirtualizedContainerService.HintSize="1200,7856" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="getText" />
+      <Variable x:TypeArguments="x:String" Name="outputData" />
+      <Variable x:TypeArguments="sd:DataTable" Name="tempDT" />
+      <Variable x:TypeArguments="x:Int32" Name="indexRow" />
+      <Variable x:TypeArguments="x:Int32" Name="idxPixel" />
+      <Variable x:TypeArguments="x:Boolean" Default="False" Name="findBul" />
+      <Variable x:TypeArguments="x:String" Name="getText2" />
+      <Variable x:TypeArguments="s:String[]" Name="tempStrArr" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="count" />
+      <Variable x:TypeArguments="x:String" Name="stockAble" />
+      <Variable x:TypeArguments="x:String" Name="stockRestrict" />
+      <Variable x:TypeArguments="x:String" Name="stockDefer" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="1158.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;start GetSamplingStockInfo processes...&quot;]" />
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File (TCODE : MMBE)" sap:VirtualizedContainerService.HintSize="1158.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="DevSource\Legarcy\SAP_Input_TCode.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="inTcode">/nMMBE</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <Sequence DisplayName="조회조건입력 및 조회" sap:VirtualizedContainerService.HintSize="1158.4,1446.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:WaitUiElementAppear FoundElement="{x:Null}" DisplayName="재고개요 화면 표시 확인" sap:VirtualizedContainerService.HintSize="940,107.2" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_1" WaitActive="False" WaitVisible="False">
+        <ui:WaitUiElementAppear.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="15dc98bd9fd3b68553342f588a9c7368" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='재고 개요: 회사 코드*' /&gt;&lt;sap id='titl' /&gt;" WaitForReady="INTERACTIVE" />
+        </ui:WaitUiElementAppear.Target>
+      </ui:WaitUiElementAppear>
+      <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="제품코드 입력" EmptyField="False" sap:VirtualizedContainerService.HintSize="940,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="False" SimulateType="False" Text="[in_productCode]">
+        <ui:TypeInto.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="8441b6feaeaaa526ef201c8e461c7a66" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='재고 개요: 회사 코드/플랜트/저장 위치/배치' /&gt;&lt;sap id='usr/ctxtMS_MATNR-LOW' /&gt;" WaitForReady="INTERACTIVE" />
+        </ui:TypeInto.Target>
+      </ui:TypeInto>
+      <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="배치번호 입력" EmptyField="False" sap:VirtualizedContainerService.HintSize="940,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_2" SendWindowMessages="False" SimulateType="False" Text="[in_batchNo]">
+        <ui:TypeInto.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="86c7f88d9147ada13055b52014edfccc" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='재고 개요: 회사 코드/플랜트/저장 위치/배치' /&gt;&lt;sap id='usr/ctxtMS_CHARG-LOW' /&gt;" WaitForReady="INTERACTIVE" />
+        </ui:TypeInto.Target>
+      </ui:TypeInto>
+      <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="실행버튼 클릭" sap:VirtualizedContainerService.HintSize="940,107.2" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+        <ui:Click.CursorPosition>
+          <ui:CursorPosition Position="Center">
+            <ui:CursorPosition.OffsetX>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:CursorPosition.OffsetX>
+            <ui:CursorPosition.OffsetY>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:CursorPosition.OffsetY>
+          </ui:CursorPosition>
+        </ui:Click.CursorPosition>
+        <ui:Click.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="7e1814ae8a5f6046a76d2e5642d360b8" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='재고 개요: 회사 코드/플랜트/저장 위치/배치' /&gt;&lt;sap id='tbar[1]/btn[8]' /&gt;" WaitForReady="INTERACTIVE" />
+        </ui:Click.Target>
+      </ui:Click>
+      <Pick sap:VirtualizedContainerService.HintSize="940,708.8" sap2010:WorkflowViewState.IdRef="Pick_1">
+        <PickBranch sap:VirtualizedContainerService.HintSize="383.2,662.4" sap2010:WorkflowViewState.IdRef="PickBranch_2">
+          <PickBranch.Trigger>
+            <ui:WaitUiElementAppear FoundElement="{x:Null}" DisplayName="작업결과화면 표시 확인" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_3" WaitActive="False" WaitVisible="False">
+              <ui:WaitUiElementAppear.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="de6c2f8d5f27a4a14d40e752894e676d" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='재고 개요: 기본 리스트' /&gt;&lt;sap id='titl' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:WaitUiElementAppear.Target>
+            </ui:WaitUiElementAppear>
+          </PickBranch.Trigger>
+        </PickBranch>
+        <PickBranch sap:VirtualizedContainerService.HintSize="383.2,662.4" sap2010:WorkflowViewState.IdRef="PickBranch_1">
+          <PickBranch.Trigger>
+            <ui:WaitUiElementAppear FoundElement="{x:Null}" DisplayName="에러창 표시 확인" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_2" WaitActive="False" WaitVisible="True">
+              <ui:WaitUiElementAppear.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d5259615becd9cdb7182e529d80d8bb5" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='재고 개요: 회사 코드/플랜트/저장 위치/배치' /&gt;&lt;sap id='sbar/pane[0]' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:WaitUiElementAppear.Target>
+            </ui:WaitUiElementAppear>
+          </PickBranch.Trigger>
+          <Sequence sap:VirtualizedContainerService.HintSize="304.8,355.2" sap2010:WorkflowViewState.IdRef="Sequence_25">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_18">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[out_SuccessYN]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">N</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_19">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[out_errorMessage]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">조회데이터없음</InArgument>
+              </Assign.Value>
+            </Assign>
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="263.2,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_7" Text="조회데이터없음" />
+          </Sequence>
+        </PickBranch>
+      </Pick>
+    </Sequence>
+    <If Condition="[out_SuccessYN = &quot;N&quot;]" sap:VirtualizedContainerService.HintSize="1158.4,6016" sap2010:WorkflowViewState.IdRef="If_10">
+      <If.Else>
+        <Sequence sap:VirtualizedContainerService.HintSize="1014.4,5866.4" sap2010:WorkflowViewState.IdRef="Sequence_36">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="KR01 레코드 위치 찾기위해 스크래핑 " sap:VirtualizedContainerService.HintSize="972.8,632.8" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="40080ccd0b890f96dc66d025f96b6a7b" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='재고 개요: 기본 리스트' /&gt;">
+            <ui:WindowScope.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,485.6" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:GetVisibleText WordsInfo="{x:Null}" DisplayName="전체 스크래핑 (GET VISIBLE TEXT)" FormattedText="False" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="GetVisibleText_1">
+                    <ui:GetVisibleText.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="7a9c18dfd458c3178a11dbea39a55fb9" Selector="&lt;sap id='usr/boxFRAME2' /&gt;" WaitForReady="INTERACTIVE" />
+                    </ui:GetVisibleText.Target>
+                    <ui:GetVisibleText.Text>
+                      <OutArgument x:TypeArguments="x:String">[getText]</OutArgument>
+                    </ui:GetVisibleText.Text>
+                  </ui:GetVisibleText>
+                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="333.6,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="272,155.2" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="230.4,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[getText]" />
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:CommentOut>
+                  <ui:GenerateDataTable ColumnSizes="{x:Null}" Positions="{x:Null}" CSVParsing="False" ColumnSeparators="[Environment.NewLine]" DataTable="[tempDT]" DisplayName="Generate Data Table" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="GenerateDataTable_1" Input="[getText]" NewLineSeparator="[Environment.NewLine]" />
+                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="333.6,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="241.6,115.2" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:OutputDataTable DataTable="[tempDT]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[outputData]" />
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:CommentOut>
+                </Sequence>
+              </ActivityAction>
+            </ui:WindowScope.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:WindowScope>
+          <ui:ForEachRow CurrentIndex="[indexRow]" DataTable="[tempDT]" DisplayName="For Each Row (KR01 레코드 위치 파악 후 그 다음 레코드에 해당 배치번호 있으면 레코드 선택" sap:VirtualizedContainerService.HintSize="972.8,1390.4" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+            <ui:ForEachRow.Body>
+              <ActivityAction x:TypeArguments="sd:DataRow">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="704.8,1241.6" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="663.2,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="272,155.2" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="230.4,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[row(0).ToString]" />
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:CommentOut>
+                  <If Condition="[row(0).ToString.Contains(&quot;KR01&quot;)]" DisplayName="KR01이 있는 레코드의 다음 레코드에 batchNo가 있으면 클릭해서 값을 구함" sap:VirtualizedContainerService.HintSize="663.2,1056" sap2010:WorkflowViewState.IdRef="If_12">
+                    <If.Then>
+                      <If Condition="[tempDT.Rows(indexRow + 2).Item(0).ToString.Contains(in_batchNo)]" DisplayName="KR01 발견 2줄아래 레코드에 배치번호가 포함되어 있을 경우 선택" sap:VirtualizedContainerService.HintSize="519.2,906.4" sap2010:WorkflowViewState.IdRef="If_11">
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="375.2,756.8" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_20">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Int32">[idxPixel]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Int32">[340 + (indexRow - 1) * 18]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <ui:Click DelayBefore="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="300" DisplayName="해당 레코드 선택 (OFFSET)" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                              <ui:Click.CursorPosition>
+                                <ui:CursorPosition OffsetX="289" OffsetY="[idxPixel]" Position="TopRight" />
+                              </ui:Click.CursorPosition>
+                              <ui:Click.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3cdc49c3e6f1efbf9567eacfa64c2650" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='재고 개요: 기본 리스트' /&gt;&lt;sap id='tbar[0]/btn[0]' /&gt;" WaitForReady="INTERACTIVE" />
+                              </ui:Click.Target>
+                            </ui:Click>
+                            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="세부조회버튼 클릭 (OFFSET)" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                              <ui:Click.CursorPosition>
+                                <ui:CursorPosition OffsetX="165" OffsetY="299" Position="TopRight" />
+                              </ui:Click.CursorPosition>
+                              <ui:Click.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="b795631c61a8ae636fafb3f5a8f40318" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='재고 개요: 기본 리스트' /&gt;&lt;sap id='tbar[0]/btn[0]' /&gt;" WaitForReady="INTERACTIVE" />
+                              </ui:Click.Target>
+                            </ui:Click>
+                            <ui:WaitUiElementAppear FoundElement="{x:Null}" DisplayName="세부조회 팝업창 확인" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_4" WaitActive="False" WaitVisible="False">
+                              <ui:WaitUiElementAppear.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f1bfbb290aeb59565f0c1deabaa0e599" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='재고 개요: 기본 리스트' /&gt;" WaitForReady="INTERACTIVE" />
+                              </ui:WaitUiElementAppear.Target>
+                            </ui:WaitUiElementAppear>
+                            <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_21">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">[findBul]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <ui:Break sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="Break_1" />
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </If.Then>
+                  </If>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEachRow.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ForEachRow>
+          <If Condition="[findBul = true]" DisplayName="가용재고, 제한재고, 보류재고 추출" sap:VirtualizedContainerService.HintSize="972.8,2729.6" sap2010:WorkflowViewState.IdRef="If_17">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="세부사항 가져오기" sap:VirtualizedContainerService.HintSize="828.8,2580" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="세부조회 내용 추출" sap:VirtualizedContainerService.HintSize="787.2,790.4" sap2010:WorkflowViewState.IdRef="WindowScope_2" InformativeScreenshot="7846432d3f89e9522af5af3dc96afaf9" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='재고 개요: 기본 리스트' /&gt;">
+                  <ui:WindowScope.Body>
+                    <ActivityAction x:TypeArguments="x:Object">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,643.2" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:GetVisibleText WordsInfo="{x:Null}" DisplayName="팝업창 내용 추출" FormattedText="False" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="GetVisibleText_2">
+                          <ui:GetVisibleText.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="ab3b8d977aeee9acb4defc11c80a4e6a" Selector="&lt;sap id='usr/cntlGRID1/shellcont/shell/shellcont[1]/shell' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:GetVisibleText.Target>
+                          <ui:GetVisibleText.Text>
+                            <OutArgument x:TypeArguments="x:String">[getText]</OutArgument>
+                          </ui:GetVisibleText.Text>
+                        </ui:GetVisibleText>
+                        <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="페이지 아래로 이동" EmptyField="False" sap:VirtualizedContainerService.HintSize="333.6,156" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="pgdn" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
+                          <ui:SendHotkey.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="47b41f39ba24f4c8a622997a72a08502" Selector="&lt;sap id='usr/cntlGRID1/shellcont/shell/shellcont[1]/shell' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:SendHotkey.Target>
+                        </ui:SendHotkey>
+                        <ui:GetVisibleText WordsInfo="{x:Null}" DisplayName="팝업창 내용 추출2" FormattedText="False" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="GetVisibleText_3">
+                          <ui:GetVisibleText.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="ab3b8d977aeee9acb4defc11c80a4e6a" Selector="&lt;sap id='usr/cntlGRID1/shellcont/shell/shellcont[1]/shell' /&gt;" WaitForReady="INTERACTIVE" />
+                          </ui:GetVisibleText.Target>
+                          <ui:GetVisibleText.Text>
+                            <OutArgument x:TypeArguments="x:String">[getText2]</OutArgument>
+                          </ui:GetVisibleText.Text>
+                        </ui:GetVisibleText>
+                        <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_22">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[getText]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[getText + getText2]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:WindowScope.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:WindowScope>
+                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="787.2,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+                  <ui:CommentOut.Body>
+                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="272,155.2" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="230.4,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[getText]" />
+                    </Sequence>
+                  </ui:CommentOut.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:CommentOut>
+                <Sequence DisplayName="데이터 추출" sap:VirtualizedContainerService.HintSize="787.2,1564" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="745.6,60" sap2010:WorkflowViewState.IdRef="Assign_23">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="s:String[]">[tempStrArr]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="s:String[]">[getText.Split({environment.NewLine},stringsplitoptions.RemoveEmptyEntries)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="745.6,1371.2" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[tempStrArr]">
+                    <ui:ForEach.Body>
+                      <ActivityAction x:TypeArguments="x:String">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="710.4,1236.8" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="668.8,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="272,155.2" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="230.4,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="[item]" />
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
+                          <If Condition="[count = 0]" sap:VirtualizedContainerService.HintSize="668.8,951.2" sap2010:WorkflowViewState.IdRef="If_16">
+                            <If.Else>
+                              <Sequence sap:VirtualizedContainerService.HintSize="524.8,801.6" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If Condition="[item.Substring(0,30).Trim = &quot;가용&quot;]" DisplayName="가용재고 추출" sap:VirtualizedContainerService.HintSize="483.2,209.6" sap2010:WorkflowViewState.IdRef="If_13">
+                                  <If.Then>
+                                    <Assign sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_24">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[stockAble]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[item.Substring(31,(item.Length -31)).Trim]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </If.Then>
+                                </If>
+                                <If Condition="[item.Substring(0,30).Trim = &quot;제한 사용&quot;]" DisplayName="제한재고 추출" sap:VirtualizedContainerService.HintSize="483.2,209.6" sap2010:WorkflowViewState.IdRef="If_14">
+                                  <If.Then>
+                                    <Assign sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_25">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[stockRestrict]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[item.Substring(31,(item.Length -31)).Trim]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </If.Then>
+                                </If>
+                                <If Condition="[item.Substring(0,30).Trim = &quot;보류재고&quot;]" DisplayName="보류재고 추출" sap:VirtualizedContainerService.HintSize="483.2,209.6" sap2010:WorkflowViewState.IdRef="If_15">
+                                  <If.Then>
+                                    <Assign sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_26">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[stockDefer]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[item.Substring(31,(item.Length -31)).Trim]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </If.Then>
+                                </If>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                          <Assign sap:VirtualizedContainerService.HintSize="668.8,60" sap2010:WorkflowViewState.IdRef="Assign_27">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Int32">[count]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Int32">[count + 1]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEach.Body>
+                  </ui:ForEach>
+                </Sequence>
+              </Sequence>
+            </If.Then>
+          </If>
+          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="972.8,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="[&quot;가능재고 : &quot;+cint(stockAble).ToString +&quot; 제한재고: &quot;+ cint(stockRestrict).ToString +&quot; 보류재고: &quot;+ cint(stockDefer).ToString]" />
+          <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="팝업창 닫기" EmptyField="False" sap:VirtualizedContainerService.HintSize="972.8,156" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="enter" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
+            <ui:SendHotkey.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="08d144559c9e47f158bac37f6fbaede0" Selector="&lt;wnd app='saplogon.exe' cls='#32770' title='재고 개요: 기본 리스트' /&gt;" WaitForReady="INTERACTIVE" />
+            </ui:SendHotkey.Target>
+          </ui:SendHotkey>
+          <If Condition="[cint(stockAble) = 0 and cint(stockRestrict) = 0 and cint(stockDefer) = 0]" sap:VirtualizedContainerService.HintSize="972.8,602.4" sap2010:WorkflowViewState.IdRef="If_18">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="304.8,252.8" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_28">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_SuccessYN]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">N</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_29">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_errorMessage]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">추출재고정보 없음</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence sap:VirtualizedContainerService.HintSize="304.8,452.8" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign DisplayName="가능 재고" sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_30">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_stockAble]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[cint(stockAble.Replace(",","")).ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign DisplayName="제한재고" sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_31">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_stockRestrict]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[cint(stockRestrict.Replace(",","")).ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign DisplayName="보류재고" sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_32">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_stockDefer]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[cint(stockDefer.Replace(",","")).ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_33">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[out_SuccessYN]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">Y</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>

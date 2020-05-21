@@ -1,0 +1,708 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SendEmailWorkingResult" this:SendEmailWorkingResult.in_robot_Id="Robot1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_toEmailId" Type="InArgument(x:String)" />
+    <x:Property Name="in_toEmailIdCC" Type="InArgument(x:String)" />
+    <x:Property Name="in_Subject" Type="InArgument(x:String)" />
+    <x:Property Name="in_processName" Type="InArgument(x:String)" />
+    <x:Property Name="in_basePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_jobListDataTable" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_robot_Email_Id" Type="InArgument(x:String)" />
+    <x:Property Name="in_robot_Id" Type="InArgument(x:String)" />
+    <x:Property Name="in_iobasePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_inputFileName" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>569.6,5546.4</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>SendEmailWorkingResult_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Cryptography</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+      <AssemblyReference>UiPath.Java.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.PDF</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="SendEmailWorkingResult" sap:VirtualizedContainerService.HintSize="549.6,5486.4" sap2010:WorkflowViewState.IdRef="Sequence_9">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="resultEmailBody" />
+      <Variable x:TypeArguments="x:Int32" Name="successCount" />
+      <Variable x:TypeArguments="x:Int32" Name="resultCount" />
+      <Variable x:TypeArguments="x:Int32" Name="indexRow" />
+      <Variable x:TypeArguments="x:Int32" Name="processingCount" />
+      <Variable x:TypeArguments="x:Int32" Name="errorCount" />
+      <Variable x:TypeArguments="x:String" Name="processingResult" />
+      <Variable x:TypeArguments="x:String" Name="workingFileName" />
+      <Variable x:TypeArguments="x:String" Name="locationInfoResult" />
+      <Variable x:TypeArguments="x:String" Name="outputFileName" />
+      <Variable x:TypeArguments="x:String" Name="toFileName" />
+      <Variable x:TypeArguments="x:String" Name="fromFileName" />
+      <Variable x:TypeArguments="x:String" Name="vsPreHtml" />
+      <Variable x:TypeArguments="x:String" Name="vsPostHtml" />
+      <Variable x:TypeArguments="sd:DataTable" Name="tempDT" />
+      <Variable x:TypeArguments="x:String" Name="excelPath" />
+      <Variable x:TypeArguments="x:String" Name="emailIdPicking" />
+      <Variable x:TypeArguments="x:String" Name="emailIdDefer" />
+      <Variable x:TypeArguments="x:String" Name="emailIdCC" />
+      <Variable x:TypeArguments="x:String" Name="toEmailId" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="508,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;start SendEmailWorkingResult  processes...&quot;]" />
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="508,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_18">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="375.2,182.4" sap2010:WorkflowViewState.IdRef="Sequence_62">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="outlook 기동" sap:VirtualizedContainerService.HintSize="333.6,89.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Email\Outlook_Open.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:KillProcess ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill process (OUTLOOK.)" sap:VirtualizedContainerService.HintSize="508,22.4" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="OUTLOOK" />
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="508,324" sap2010:WorkflowViewState.IdRef="CommentOut_22">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416.8,245.6" sap2010:WorkflowViewState.IdRef="Sequence_66">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="테스트 용" sap:VirtualizedContainerService.HintSize="375.2,152.8" sap2010:WorkflowViewState.IdRef="Sequence_19">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:BuildDataTable DataTable="[in_jobListDataTable]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;column1&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;ResultCount&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;outputFileName&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;ProcessingCount&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;SuccessCount&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;column1&gt;Handok_5.Sampleing_StockRequest_karam.park_20190902_RPARequest.xlsx&lt;/column1&gt;&#xA;    &lt;ResultCount&gt;111&lt;/ResultCount&gt;&#xA;    &lt;outputFileName&gt;Handok_5.Sampleing_StockRequest_joonk.choi_20190904_RPAComplete(20190904 172112).xlsx&lt;/outputFileName&gt;&#xA;    &lt;ProcessingCount&gt;100&lt;/ProcessingCount&gt;&#xA;    &lt;SuccessCount&gt;99&lt;/SuccessCount&gt;&#xA;  &lt;/TableName&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;column1&gt;Handok_5.Sampleing_StockRequest_karam.park_20190904_RPAComplete(20190904 172247).xlsx&lt;/column1&gt;&#xA;    &lt;ResultCount&gt;1&lt;/ResultCount&gt;&#xA;    &lt;outputFileName&gt;Handok_5.Sampleing_StockRequest_karam.park_20190904_RPAComplete(20190904 172247).xlsx&lt;/outputFileName&gt;&#xA;    &lt;ProcessingCount&gt;1&lt;/ProcessingCount&gt;&#xA;    &lt;SuccessCount&gt;1&lt;/SuccessCount&gt;&#xA;  &lt;/TableName&gt;&#xA;&lt;/NewDataSet&gt;" />
+          </Sequence>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="508,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_15">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="272,155.2" sap2010:WorkflowViewState.IdRef="Sequence_55">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="230.4,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[in_toEmailId +&quot;::&quot;+ in_toEmailIdCC +&quot;::&quot;+ in_Subject]" />
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <Sequence DisplayName="Output 공용폴더에 복사 " sap:VirtualizedContainerService.HintSize="508,815.2" sap2010:WorkflowViewState.IdRef="Sequence_52">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[in_jobListDataTable]" DisplayName="For each row" sap:VirtualizedContainerService.HintSize="466.4,722.4" sap2010:WorkflowViewState.IdRef="ForEachRow_5">
+        <ui:ForEachRow.Body>
+          <ActivityAction x:TypeArguments="sd:DataRow">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416.8,573.6" sap2010:WorkflowViewState.IdRef="Sequence_51">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign DisplayName="현재 row 위치" sap:VirtualizedContainerService.HintSize="375.2,60" sap2010:WorkflowViewState.IdRef="Assign_76">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">[indexRow]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">[in_jobListDataTable.Rows.IndexOf(row)]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Sequence DisplayName="RPA작업결과 LIST 복사" sap:VirtualizedContainerService.HintSize="375.2,380.8" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_77">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[fromFileName]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[in_basePath + "\Output\"+in_jobListDataTable.Rows(indexRow).Item("outputFileName").ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_78">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[toFileName]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[in_iobasePath + "\"+ in_robot_Id + "\"+ in_processName +"\Output\"+in_jobListDataTable.Rows(indexRow).Item("outputFileName").ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="file copy 처리" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="DevSource\common\fileCopyProcess.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_fromFileName">[fromFileName]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_toFileName">[toFileName]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEachRow.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:ForEachRow>
+    </Sequence>
+    <Sequence DisplayName="보류해제정보 파악" sap:VirtualizedContainerService.HintSize="508,68.8" sap2010:WorkflowViewState.IdRef="Sequence_59">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign sap:VirtualizedContainerService.HintSize="433.6,60" sap2010:WorkflowViewState.IdRef="Assign_103">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[excelPath]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_basePath + "\Output\"+in_jobListDataTable.Rows(indexRow).Item("outputFileName").ToString]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope (보류해제여부 파악)" sap:VirtualizedContainerService.HintSize="433.6,262.4" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" Visible="False" WorkbookPath="[excelPath]">
+        <ui:ExcelApplicationScope.Body>
+          <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,152.8" sap2010:WorkflowViewState.IdRef="Sequence_58">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:ExcelReadRange AddHeaders="True" DataTable="[tempDT]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_2" SheetName="Sheet1">
+                <ui:ExcelReadRange.Range>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </InArgument>
+                </ui:ExcelReadRange.Range>
+              </ui:ExcelReadRange>
+            </Sequence>
+          </ActivityAction>
+        </ui:ExcelApplicationScope.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:ExcelApplicationScope>
+    </Sequence>
+    <Sequence DisplayName="메일id 정보 파악" sap:VirtualizedContainerService.HintSize="508,68.8" sap2010:WorkflowViewState.IdRef="Sequence_60">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign sap:VirtualizedContainerService.HintSize="433.6,60" sap2010:WorkflowViewState.IdRef="Assign_104">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[excelPath]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_basePath + "\Input\"+in_inputFileName]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope (메일id 정보 파악)" sap:VirtualizedContainerService.HintSize="433.6,1359.2" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" Visible="False" WorkbookPath="[excelPath]">
+        <ui:ExcelApplicationScope.Body>
+          <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="355.2,1249.6" sap2010:WorkflowViewState.IdRef="Sequence_56">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="emailIdCC2" />
+                <Variable x:TypeArguments="x:String" Name="emailIdCC3" />
+                <Variable x:TypeArguments="x:String" Name="emailIdId" />
+                <Variable x:TypeArguments="x:String" Name="emailIdQA" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:ExcelReadCell Cell="C2" DisplayName="Read Cell (SCM물류기획팀) 참조" sap:VirtualizedContainerService.HintSize="314,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_1" SheetName="Sheet1">
+                <ui:ExcelReadCell.Result>
+                  <OutArgument x:TypeArguments="x:String">[emailIdPicking]</OutArgument>
+                </ui:ExcelReadCell.Result>
+              </ui:ExcelReadCell>
+              <ui:ExcelReadCell Cell="B3" DisplayName="Read Cel (SCM 보류해제자) 수신" sap:VirtualizedContainerService.HintSize="314,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_2" SheetName="Sheet1">
+                <ui:ExcelReadCell.Result>
+                  <OutArgument x:TypeArguments="x:String">[emailIdDefer]</OutArgument>
+                </ui:ExcelReadCell.Result>
+              </ui:ExcelReadCell>
+              <ui:ExcelReadCell Cell="B4" DisplayName="Read Cell (포장재미생물시험팀) 수신" sap:VirtualizedContainerService.HintSize="314,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_3" SheetName="Sheet1">
+                <ui:ExcelReadCell.Result>
+                  <OutArgument x:TypeArguments="x:String">[emailIdId]</OutArgument>
+                </ui:ExcelReadCell.Result>
+              </ui:ExcelReadCell>
+              <ui:ExcelReadCell Cell="C4" DisplayName="Read Cell (포장재미생물시험팀) 참조" sap:VirtualizedContainerService.HintSize="314,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_4" SheetName="Sheet1">
+                <ui:ExcelReadCell.Result>
+                  <OutArgument x:TypeArguments="x:String">[emailIdCC]</OutArgument>
+                </ui:ExcelReadCell.Result>
+              </ui:ExcelReadCell>
+              <ui:ExcelReadCell Cell="C5" DisplayName="Read Cell (고정) 참조" sap:VirtualizedContainerService.HintSize="314,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_5" SheetName="Sheet1">
+                <ui:ExcelReadCell.Result>
+                  <OutArgument x:TypeArguments="x:String">[emailIdCC2]</OutArgument>
+                </ui:ExcelReadCell.Result>
+              </ui:ExcelReadCell>
+              <ui:ExcelReadCell Cell="B6" DisplayName="Read Cell (QA팀장) 수신" sap:VirtualizedContainerService.HintSize="314,59" sap2010:WorkflowViewState.IdRef="ExcelReadCell_6" SheetName="Sheet1">
+                <ui:ExcelReadCell.Result>
+                  <OutArgument x:TypeArguments="x:String">[emailIdQA]</OutArgument>
+                </ui:ExcelReadCell.Result>
+              </ui:ExcelReadCell>
+              <Assign DisplayName="Assign (수신)" sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_113">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[toEmailId]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[emailIdId +";"+ in_toEmailId]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign (수신)" sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_114">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[toEmailId]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[toEmailId.Replace(";;",";")]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign (참조)" sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_105">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[emailIdCC]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[emailIdCC +";"+ emailIdCC2 +";"+ in_toEmailIdCC]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign (참조)" sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_115">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[emailIdCC]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[emailIdCC.Replace(";;",";")]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="314,61" sap2010:WorkflowViewState.IdRef="WriteLine_9" Text="[toEmailId]" />
+              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="314,61" sap2010:WorkflowViewState.IdRef="WriteLine_8" Text="[emailIdCC]" />
+            </Sequence>
+          </ActivityAction>
+        </ui:ExcelApplicationScope.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:ExcelApplicationScope>
+    </Sequence>
+    <Sequence DisplayName="메일 편집" sap:VirtualizedContainerService.HintSize="508,3165.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign sap:VirtualizedContainerService.HintSize="396,60" sap2010:WorkflowViewState.IdRef="Assign_91">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[vsPreHtml]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">["&lt;p&gt;&lt;SPAN LANG='ko'&gt;&lt;FONT SIZE=2 FACE='Malgun Gothic'&gt;"]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="396,60" sap2010:WorkflowViewState.IdRef="Assign_92">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[vsPostHtml]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">["&lt;/FONT&gt;&lt;/SPAN&gt;&lt;/p&gt;"]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Sequence DisplayName="주소/제목 입력" sap:VirtualizedContainerService.HintSize="396,152.8" sap2010:WorkflowViewState.IdRef="Sequence_11">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:String" Name="subject" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Assign sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_27">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[subject]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">["[UiPath RPA] "+ in_processName +" - 작업결과 송부"]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </Sequence>
+      <Sequence DisplayName="메일BODY에 TEXT입력" sap:VirtualizedContainerService.HintSize="396,2587.2" sap2010:WorkflowViewState.IdRef="Sequence_13">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:String" Name="occurredTime" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Assign sap:VirtualizedContainerService.HintSize="354.4,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[occurredTime]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[now.ToString("yyyy-MM-dd HH:mm:ss")]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="354.4,60" sap2010:WorkflowViewState.IdRef="Assign_67">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[locationInfoResult]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[in_iobasePath + "\"+ in_robot_Id + "\"+ in_processName + "\Output"]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign DisplayName="본문메일편집" sap:VirtualizedContainerService.HintSize="354.4,60" sap2010:WorkflowViewState.IdRef="Assign_93">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[resultEmailBody]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String" xml:space="preserve">[vsPreHtml+"안녕하세요.  유아이패스 로봇입니다. " + vsPostHtml]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign DisplayName="본문메일편집 - 하기와 같이 ~" sap:VirtualizedContainerService.HintSize="354.4,60" sap2010:WorkflowViewState.IdRef="Assign_94">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[resultEmailBody]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[resultEmailBody + vsPreHtml+ "하기와 같이 [" + in_ProcessName +"] 작업을 수행하였으니 확인 부탁드립니다." + vsPostHtml]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign DisplayName="본문메일편집 - 프로세스명" sap:VirtualizedContainerService.HintSize="354.4,60" sap2010:WorkflowViewState.IdRef="Assign_96">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[resultEmailBody]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[resultEmailBody + vsPreHtml+" 프로세스명 : " + in_ProcessName + vsPostHtml]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign DisplayName="본문메일편집 - 작업일시" sap:VirtualizedContainerService.HintSize="354.4,60" sap2010:WorkflowViewState.IdRef="Assign_97">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[resultEmailBody]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[resultEmailBody +vsPreHtml+ " 작업일시 : " + occurredTime + vsPostHtml]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign DisplayName="본문메일편집 -  줄선" sap:VirtualizedContainerService.HintSize="354.4,60" sap2010:WorkflowViewState.IdRef="Assign_95">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[resultEmailBody]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[resultEmailBody + vsPreHtml +"==============================================================" + vsPostHtml]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[in_jobListDataTable]" DisplayName="For each row" sap:VirtualizedContainerService.HintSize="354.4,1494.4" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
+          <ui:ForEachRow.Body>
+            <ActivityAction x:TypeArguments="sd:DataRow">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="304.8,1345.6" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign DisplayName="현재 row 위치" sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_55">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[indexRow]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[in_jobListDataTable.Rows.IndexOf(row)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign DisplayName="전체건수" sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_56">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[resultCount]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[cint(in_jobListDataTable.Rows(indexRow).Item("resultCount"))]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign DisplayName="처리건수" sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_57">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[processingCount]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[cint(in_jobListDataTable.Rows(indexRow).Item("processingCount"))]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign DisplayName="정상건수" sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_58">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[successCount]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[cint(in_jobListDataTable.Rows(indexRow).Item("successCount"))]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign DisplayName="오류건수" sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_59">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[errorCount]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[processingCount - successCount]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign DisplayName="입력작업파일명" sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_65">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[workingFileName]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[in_jobListDataTable.Rows(indexRow).Item(0).ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign DisplayName="출력파일명" sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_68">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[outputFileName]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[in_jobListDataTable.Rows(indexRow).Item("outputFileName").ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign DisplayName="건수편집" sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_66">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[processingResult]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">["작업건수 : 전체 " + resultCount.ToString +" 건 / 처리 " + processingCount.ToString + " 건 / 정상 " + successCount.ToString + " 건 / 오류 " + errorCount.ToString + " 건 "]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign DisplayName="본문메일편집 - 입력작업요청 파일명" sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_98">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[resultEmailBody]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String" xml:space="preserve">[resultEmailBody +vsPreHtml+ " 입력요청파일명 :  " + workingFileName + vsPostHtml]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign DisplayName="본문메일편집 - 처리결과" sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_99">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[resultEmailBody]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String" xml:space="preserve">[resultEmailBody +vsPreHtml+ "  " + processingResult + vsPostHtml]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="263.2,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_21">
+                  <ui:CommentOut.Body>
+                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="304.8,252.8" sap2010:WorkflowViewState.IdRef="Sequence_65">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Assign DisplayName="본문메일편집 - 보류해제 작업" sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_101">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[resultEmailBody]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String" xml:space="preserve">[resultEmailBody + vsPreHtml+" - 보류해제 작업건수 :  " + tempDT.Select("[보류해제여부]&lt;&gt;''").Count.ToString + " 건"+ vsPostHtml]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign DisplayName="본문메일편집 - 피킹 작업" sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_102">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[resultEmailBody]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String" xml:space="preserve">[resultEmailBody + vsPreHtml+" - 피킹  작업건수 :  " + successCount.ToString+ " 건"+ vsPostHtml]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </ui:CommentOut.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:CommentOut>
+                <Assign DisplayName="본문메일편집 - 출력 파일명(목록)" sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_73">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[resultEmailBody]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String" xml:space="preserve">[resultEmailBody + vsPreHtml+" RPA작업결과 파일명 :  &lt;a href='"+locationInfoResult+"\" + outputFileName +"'&gt;" +outputFileName+"&lt;/a&gt;"+ vsPostHtml]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign DisplayName="본문메일편집 -  줄선" sap:VirtualizedContainerService.HintSize="263.2,60" sap2010:WorkflowViewState.IdRef="Assign_111">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[resultEmailBody]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[resultEmailBody + vsPreHtml +"---------------------------------------------------------------------------------------------------------" + vsPostHtml]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </ActivityAction>
+          </ui:ForEachRow.Body>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </ui:ForEachRow>
+        <Assign DisplayName="본문메일편집 - 빈칸" sap:VirtualizedContainerService.HintSize="354.4,60" sap2010:WorkflowViewState.IdRef="Assign_61">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[resultEmailBody]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[resultEmailBody + Environment.NewLine]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign DisplayName="본문메일편집 - 결과위치" sap:VirtualizedContainerService.HintSize="354.4,60" sap2010:WorkflowViewState.IdRef="Assign_100">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[resultEmailBody]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[resultEmailBody + vsPreHtml+"RPA작업결과 위치 : "+ locationInfoResult +vsPostHtml+Environment.NewLine]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign DisplayName="본문메일편집 - 감사합니다." sap:VirtualizedContainerService.HintSize="354.4,60" sap2010:WorkflowViewState.IdRef="Assign_109">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[resultEmailBody]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[resultEmailBody + vsPreHtml + "감사합니다." + vsPostHtml + Environment.NewLine]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </Sequence>
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="396,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_14">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="272,155.2" sap2010:WorkflowViewState.IdRef="Sequence_54">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="230.4,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="[resultEmailBody]" />
+          </Sequence>
+        </ui:CommentOut.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:CommentOut>
+    </Sequence>
+    <Sequence DisplayName="편지 보내기" sap:VirtualizedContainerService.HintSize="508,239.2" sap2010:WorkflowViewState.IdRef="Sequence_45">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:SendOutlookMail Bcc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Account="[in_robot_Email_Id]" Body="[resultEmailBody]" Cc="[emailIdCC]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="333.6,146.4" sap2010:WorkflowViewState.IdRef="SendOutlookMail_2" IsBodyHtml="True" IsDraft="False" Subject="[in_Subject]" To="[toEmailId]">
+        <ui:SendOutlookMail.Files>
+          <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+        </ui:SendOutlookMail.Files>
+      </ui:SendOutlookMail>
+    </Sequence>
+    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="436,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot; [&quot;+in_ProcessName+&quot;] processes completed!!...Good Job...&quot;]" />
+  </Sequence>
+</Activity>
