@@ -4,12 +4,11 @@
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_TransactionNumber" Type="InArgument(x:Int32)" />
     <x:Property Name="io_TransactionData" Type="InOutArgument(sd:DataTable)" />
-    <x:Property Name="out_BusinessRuleException" Type="OutArgument(ui:BusinessRuleException)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>734,1053</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>989,1053</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -62,6 +61,7 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.CV</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="384,988" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -75,23 +75,29 @@
     <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="342,65" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="프로세스&gt;&gt;&gt;" />
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke List_Applied_Services workflow" sap:VirtualizedContainerService.HintSize="342,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Sequence\List_Applied_Services.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <OutArgument x:TypeArguments="ui:BusinessRuleException" x:Key="out_BusinessRuleException">
-          <mva:VisualBasicReference x:TypeArguments="ui:BusinessRuleException" ExpressionText="out_BusinessRuleException" />
-        </OutArgument>
+        <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="342,65" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="Gov24_Get_Apply_Count" />
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Gov24_Get_Apply_Count workflow" sap:VirtualizedContainerService.HintSize="342,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Sequence\Gov24_Get_Apply_Count.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_TransactionData">[io_TransactionData]</InOutArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_TransactionNumber">[in_TransactionNumber]</InArgument>
+        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_TransactionData">
+          <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_TransactionData" />
+        </InOutArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_TransactionNumber">
+          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="in_TransactionNumber" />
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="342,65" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="Gov24_Save_Doc" />
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Gov24_Save_Doc workflow" sap:VirtualizedContainerService.HintSize="342,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Sequence\Gov24_Save_Doc.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_TransactionData">[io_TransactionData]</InOutArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_TransactionNumber">[in_TransactionNumber]</InArgument>
+        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_TransactionData">
+          <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_TransactionData" />
+        </InOutArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_TransactionNumber">
+          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="in_TransactionNumber" />
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>

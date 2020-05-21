@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>931,804</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>988,804</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Government24_Send_Mail_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="24">
@@ -101,8 +101,9 @@
     <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;정상 &quot;+success.ToString+&quot;건, 오류 &quot;+errors.ToString+&quot;건.&quot;]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="379,159" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="False" IsDraft="False" Subject="주민등록표송부" To="h-park@zerobacokr.com">
       <ui:SendOutlookMail.Files>
         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-          <InArgument x:TypeArguments="x:String">[in_personInfo_path]</InArgument>
-          <InArgument x:TypeArguments="x:String">[ZipPath]</InArgument>
+          <InArgument x:TypeArguments="x:String">
+            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_personInfo_path" />
+          </InArgument>
         </scg:List>
       </ui:SendOutlookMail.Files>
     </ui:SendOutlookMail>
